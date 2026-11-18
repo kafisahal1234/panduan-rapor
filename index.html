@@ -577,6 +577,9 @@ details[open] div{animation:bukaTurun .35s cubic-bezier(.22,1.1,.36,1)}
 @media (min-width:640px){ .rencana{grid-template-columns:repeat(10,minmax(0,1fr))} }
 .pilgrup{flex-wrap:wrap} .pilgrup > div:nth-child(2){flex:1; min-width:0}
 @media (max-width:360px){ .hitung{margin-left:48px} .rc b{font-size:11px} }
+.bukanaku{margin:8px 2px 0; font-size:13.5px; color:var(--redup)}
+.bukanaku button{background:none; border:0; padding:0; color:var(--oranye); font-weight:800; text-decoration:underline; cursor:pointer; font:inherit; font-weight:800}
+.gantiboks{border-color:var(--oranye-soft)}
 </style>
 </head>
 <body>
@@ -1018,14 +1021,17 @@ details[open] div{animation:bukaTurun .35s cubic-bezier(.22,1.1,.36,1)}
   <span class="kick">Langkah terakhir</span>
   <h1>Kirim ke AI, rapikan, kumpulkan</h1>
   <div class="kartu" style="margin-top:18px">
-    <h3 style="margin-bottom:10px">1. Kirim ke AI</h3>
+    <h3 style="margin-bottom:10px">1. Kirim ke Claude</h3>
     <ol style="padding-left:21px; color:var(--ink-2); margin:0; line-height:1.9">
-      <li>Buka <b>chat baru yang masih kosong</b> di ChatGPT, Gemini, atau Claude.</li>
-      <li>Tempel prompt dari halaman sebelumnya, lalu kirim.</li>
-      <li>Tunggu sampai AI memberi file <b>.pptx</b>, lalu unduh dan buka di PowerPoint.</li>
+      <li>Buka aplikasi <b>Claude</b> atau <b>claude.ai</b> di Chrome, pakai akun Ustaz pendamping.</li>
+      <li>Buat <b>chat baru yang masih kosong</b>. Satu santri, satu chat.</li>
+      <li>Tekan lama kotak ketik &rarr; <b>Tempel</b> &rarr; kirim.</li>
+      <li>Tunggu 2&ndash;5 menit sampai muncul kartu file <b>.pptx</b>. Ketuk kartunya, lalu <b>Unduh</b>.</li>
+      <li>Buka filenya di aplikasi PowerPoint untuk dirapikan.</li>
     </ol>
-    <div class="tip"><b>Hasilnya kurang pas?</b> Jangan ulang dari awal. Minta perbaiki bagian itu saja, misalnya: "Slide 5 kepenuhan, ringkas jadi 4 poin, slide lain jangan diubah."</div>
-    <details><summary>AI-nya tidak bisa membuat file .pptx</summary><div><p>Minta: "Tolong keluarkan sebagai file .pptx yang bisa saya unduh." Kalau tetap tidak bisa, pindah ke AI lain, atau pakai PDF dari halaman Prompt lalu susun sendiri di PowerPoint.</p></div></details>
+    <div class="tip"><b>Hasilnya kurang pas?</b> Jangan ulang dari awal. Balas di chat yang sama, misalnya: "Slide 5 kepenuhan, ringkas jadi 4 poin, slide lain jangan diubah."</div>
+    <details><summary>Claude cuma menulis teks, tidak ada file .pptx</summary><div><p>Buka <b>Settings &rarr; Capabilities</b>, nyalakan <b>Create and edit files</b> (di sebagian aplikasi namanya <b>Code execution and file creation</b>). Lalu balas di chat yang sama: "Tolong buatkan sebagai file .pptx yang bisa saya unduh."</p></div></details>
+    <details><summary>Muncul pesan batas pemakaian</summary><div><p>Akun gratis punya batas pemakaian. Tunggu sampai jam yang disebut Claude, lalu lanjutkan di chat yang sama. Sambil menunggu, santri lain boleh mengisi 10 misi dulu.</p></div></details>
     <details><summary>Hasilnya rusak atau tidak bisa dibuka</summary><div><p>Balas: "File-nya tidak bisa dibuka. Buat ulang file .pptx-nya dengan bentuk yang lebih sederhana."</p></div></details>
   </div>
   <div class="kartu">
@@ -1051,10 +1057,17 @@ details[open] div{animation:bukaTurun .35s cubic-bezier(.22,1.1,.36,1)}
     </div>
     <p style="font-size:14.5px; color:var(--redup); margin:12px 0 0">Ganti nama filenya dulu, lalu unggah ke folder kelasmu. Pastikan filenya benar-benar muncul di folder sebelum menutup halaman.</p>
   </div>
+  <div class="kartu gantiboks">
+    <h3 style="margin-bottom:6px">4. HP dipakai bergantian? Ganti santri</h3>
+    <p style="color:var(--ink-2); margin:0 0 6px">Jawaban tersimpan di HP ini. Sebelum santri berikutnya mulai, kosongkan dulu supaya jawabannya tidak tercampur.</p>
+    <p style="font-size:14px; color:var(--redup); margin:0">Pastikan prompt sudah dikirim ke Claude, atau <b>PDF prompt</b> sudah diunduh dari halaman Prompt sebagai cadangan.</p>
+    <div class="btns"><button class="btn btn-u" type="button" data-reset>&#128260; Ganti ke santri berikutnya</button></div>
+  </div>
   <h2 style="margin-top:28px">Sudah dikumpulkan? Latihan dulu &#127908;</h2>
   <p style="color:var(--ink-2)">Total presentasimu 10&ndash;15 menit. Berdiri menghadap Ayah dan Bunda, bukan menghadap layar, dan jangan membaca slide. Setelah selesai, beri kesempatan mereka bertanya.</p>
   <h2 style="margin-top:28px">Pertanyaan yang sering muncul</h2>
   <details><summary>Isianku hilang setelah menutup browser</summary><div><p>Isian tersimpan di HP atau laptop yang kamu pakai. Kalau pindah perangkat atau pakai mode penyamaran, isiannya tidak ikut. Kerjakan di satu perangkat yang sama ya.</p></div></details>
+  <details><summary>Satu HP dipakai beberapa santri</summary><div><p>Bisa. Selesaikan satu santri sampai promptnya terkirim ke Claude, lalu tekan <b>Ganti ke santri berikutnya</b> di halaman Kumpul. Santri berikutnya mulai dari misi 1 dengan kolom kosong.</p></div></details>
   <details><summary>Tombol salin tidak berfungsi</summary><div><p>Sebagian browser HP melarang salin otomatis. Tahan jarimu di atas kotak hitam, pilih Select all lalu Copy secara manual.</p></div></details>
   <details><summary>Aku belum punya nilai rapornya</summary><div><p>Kosongkan saja. Nanti muncul tempat kosong yang tinggal kamu isi setelah nilai keluar. Yang dilarang itu mengarang angka.</p></div></details>
   <details><summary>Masih bingung</summary><div><p>Tanya langsung ke Ustaz M. Kafi Sahal Muhtar saat jam pelajaran IT, atau ke musyrif halaqahmu.</p></div></details>
@@ -1946,9 +1959,11 @@ function keStep(n){arah=(n>=(S.step||1))?1:-1; S.step=n; save(); go('langkah',tr
 function rLanjut(){
  var e=$('#lanjutkan'); if(!e)return;
  var beres=0; for(var i=1;i<=10;i++) if(selesai(i)) beres++;
- if(beres===0 && (S.step||1)===1){ e.innerHTML=''; return; }
+ if(beres===0 && (S.step||1)===1 && !v('nama').trim()){ e.innerHTML=''; return; }
  var n=S.step||1;
- e.innerHTML='<div class="lanjut"><div><b>Lanjut yuk, kamu di slide '+n+' \u{1F4AA}</b><small>'+beres+' dari 10 slide sudah terisi · '+SLIDE[n-1]+'</small></div><button class="btn btn-u btn-s" data-step="'+n+'">Lanjutkan →</button></div>';
+ var siapa=v('nama').trim();
+ e.innerHTML='<div class="lanjut"><div><b>'+(siapa?'Lanjut, '+esc(potong(siapa,24))+'! ':'Lanjut yuk! ')+'Kamu di slide '+n+' \u{1F4AA}</b><small>'+beres+' dari 10 slide sudah terisi · '+SLIDE[n-1]+'</small></div><button class="btn btn-u btn-s" data-step="'+n+'">Lanjutkan →</button></div>'+
+  (siapa?'<p class="bukanaku">Bukan '+esc(potong(siapa,24))+'? <button type="button" data-reset>Ganti santri</button></p>':'');
 }
 function namaFile(){
  var a=v('nama').trim().toUpperCase().replace(/[^A-Z0-9 ]/g,'').replace(/\s+/g,'_')||'NAMA';
@@ -2025,6 +2040,13 @@ document.addEventListener('click',function(e){
    if(it<0){ var bx=$('#pra-step'), ii=0, R=rencana(); for(var q=0;q<PV.length;q++){ if(R[PV[q]-1].id===t.dataset.tra){ii=q;break;} }
      if(ii===0) ii=1; praIdx.step=(ii+PV.length-1)%PV.length; setPra('step',ii,true); }
    return;}
+ if((t=e.target.closest('[data-reset]'))){
+   var nm=v('nama').trim()||'santri ini';
+   if(!window.confirm('Hapus semua jawaban '+nm+' dari HP ini?\n\nPastikan promptnya sudah dikirim ke Claude atau PDF-nya sudah diunduh.')) return;
+   clearTimeout(tm); S={step:1,chk:{}};
+   try{ localStorage.removeItem(KEY); }catch(er){}
+   try{ sessionStorage.clear(); }catch(er){}
+   location.hash='beranda'; location.reload(); return;}
  if((t=e.target.closest('[data-putar]'))){var pp=t.dataset.putar; praJeda[pp]=!praJeda[pp]; t.innerHTML=praJeda[pp]?'&#9654; Putar':'&#9208; Jeda'; return;}
  if((t=e.target.closest('#lihatpra'))){var pb=$('#praboks'); if(pb) pb.scrollIntoView({behavior:'smooth',block:'start'}); return;}
  if((t=e.target.closest('#btnPdf2'))){buatPdf('statusPdf2',t); return;}
