@@ -1862,6 +1862,9 @@ function rMisi(n){
  var d=$('#st-'+n); if(!d) return;
  var box=d.querySelector('.misi'); if(!box) return;
  var beres=selesai(n), sisa=kurang(n);
+ var kunci=(beres?'1':'0')+'|'+sisa.join(',');
+ if(box.dataset.k===kunci) return;
+ box.dataset.k=kunci;
  var lanjut = n<10 ? '<button class="btn btn-u btn-s" data-step="'+(n+1)+'">Misi '+(n+1)+' \u2192</button>'
                    : '<button class="btn btn-u btn-s" data-go="tampilan">Pilih tampilan \u2192</button>';
  if(beres){
@@ -1898,13 +1901,14 @@ function buatJalur(){
  for(var i=1;i<=10;i++) h+='<div class="stop" data-stop="'+i+'"><button data-n="'+i+'" aria-label="Slide '+i+': '+SLIDE[i-1]+'">'+i+'</button><span>'+SLIDE[i-1]+'</span></div>';
  e.innerHTML=h;
 }
-var arah=1;
+var arah=1, stepTampil=null;
 function tampilStep(){
  var n=Math.min(10,Math.max(1,S.step||1));
+ var pindah = n!==stepTampil; stepTampil=n;
  $$('.step').forEach(function(d){
   var aktif = d.id==='st-'+n;
   d.hidden = !aktif;
-  if(aktif){ d.classList.remove('geserKi','geserKa'); void d.offsetWidth; d.classList.add(arah>=0?'geserKa':'geserKi'); }
+  if(aktif && pindah){ d.classList.remove('geserKi','geserKa'); void d.offsetWidth; d.classList.add(arah>=0?'geserKa':'geserKi'); }
  });
  $$('.stop').forEach(function(s){var i=+s.dataset.stop;
   s.className='stop'+(i===n?' kini':'')+(selesai(i)&&i!==n?' ok':'');
@@ -1913,7 +1917,7 @@ function tampilStep(){
  var p=$('#prev'); if(p) p.style.visibility = n===1?'hidden':'visible';
  var x=$('#next'); if(x) x.textContent = n===10? 'Pilih tampilan →':'Lanjut →';
  var j=$('#jalur'), act=$('.stop.kini');
- if(j&&act&&j.scrollTo){try{j.scrollTo({left:act.offsetLeft-j.clientWidth/2+act.clientWidth/2,behavior:'smooth'});}catch(e){}}
+ if(pindah&&j&&act&&j.scrollTo){try{j.scrollTo({left:act.offsetLeft-j.clientWidth/2+act.clientWidth/2,behavior:'smooth'});}catch(e){}}
  rMisi(n); cekMisiBaru();
  var beres=0; for(var i=1;i<=10;i++) if(selesai(i)) beres++;
  var bar=$('#progisi'); if(bar) bar.style.width=(beres*10)+'%';
