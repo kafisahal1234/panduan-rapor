@@ -1670,7 +1670,10 @@ function buatPdf(statusId,tombol){
 
 /* ================= PROMPT ================= */
 function kosong(t,n){return '[BELUM DIISI — buka langkah '+n+': '+t+']';}
-function isi(k,t,n){var x=v(k).trim(); return x||kosong(t,n);}
+var CERITA=['prinsip','tingkat','hadir','banding','hafTantang','hafTarget','muraj','tahsin','ibadahBaik','ibadahPerbaiki','adabUbah','tanggungJawab','proyek','skillIT','skillIng','proyekSulit','kekuatan','gagal','pelajaran','capaian','terimaKasih','tgtQuran','tgtAkademik','tgtIbadah','tgtSkill','komitmen','dukungan'];
+function tanda(k,x){ if(!x||CERITA.indexOf(k)<0) return x; var n=x.split(/\s+/).filter(function(w){return w;}).length; return n<8? x+' (singkat: kembangkan)' : x; }
+function cer(k){ return tanda(k, v(k).trim()); }
+function isi(k,t,n){var x=v(k).trim(); return x? tanda(k,x) : kosong(t,n);}
 function ops(k,alt){var x=v(k).trim(); return x||alt;}
 function buatPrompt(){
  var t=tema(), f=font(), o=orn(), sm=sam(), k=krt(), an=ani();
@@ -1729,16 +1732,28 @@ function buatPrompt(){
  a.push('');
  a.push('B10. Pegangan: maksimal 3-5 poin per slide, ada ruang kosong di tepi, teks kontras tajam dengan latarnya, tidak ada paragraf panjang, nomor slide kecil di pojok kanan bawah.');
  a.push('');
- a.push('=== BAGIAN C. BAHASA DAN CARA MENULIS ULANG KALIMAT SAYA (PENTING) ===');
- a.push('Saya masih SMP, jadi kalimat saya di Bagian D sering kaku, pendek, atau berantakan susunannya.');
- a.push('TUGASMU: rapikan dan kembangkan kalimat saya supaya enak dibaca dan mengalir, lalu susun jadi poin-poin slide yang rapi.');
- a.push('Aturan saat merapikan:');
- a.push('1. Jangan mengubah maknanya, dan jangan menambah kejadian, angka, nama, atau prestasi yang tidak saya tulis.');
- a.push('2. Kalimat saya yang terlalu pendek boleh dipanjangkan sedikit agar jelas, tetapi isinya tetap dari yang saya tulis.');
- a.push('3. Hasilnya harus tetap terdengar seperti anak SMP yang jujur bercerita, bukan bahasa dewasa, bahasa iklan, atau bahasa laporan kantor. Hindari kata-kata muluk seperti "senantiasa", "mengaktualisasikan", "signifikan".');
- a.push('4. Pakai kalimat pendek dan kata sehari-hari yang sopan. Boleh memakai kata "saya" atau "aku", pilih salah satu dan konsisten.');
- a.push('5. Untuk slide, ringkas jadi poin pendek. Untuk catatan pembicara, boleh kalimat utuh yang lebih mengalir.');
- a.push('6. Kalau ada jawaban saya yang masih kosong, jangan dikarang. Tulis tempat kosong yang jelas supaya saya isi sendiri.');
+ a.push('=== BAGIAN C. MERAPIKAN DAN MENGEMBANGKAN KALIMAT SAYA (PENTING) ===');
+ a.push('Saya masih SMP. Jawaban saya di Bagian D banyak yang singkat, kaku, atau kurang lengkap. Jawaban yang diberi tanda (singkat: kembangkan) JANGAN hanya disalin, tetapi kembangkan.');
+ a.push('');
+ a.push('Untuk setiap jawaban:');
+ a.push('1. Rapikan susunan kalimatnya supaya enak dibaca dan mengalir.');
+ a.push('2. Kalau jawabannya singkat, kembangkan secukupnya dengan cara: menjelaskan maksudnya dengan kata yang lebih jelas; menambahkan alasan atau dampak yang wajar ("karena...", "sehingga..."); menarik pelajaran atau perasaan yang masuk akal dari jawaban itu; dan menghubungkannya dengan target atau komitmen saya.');
+ a.push('3. Takarannya jangan berlebihan. Di slide: 3-4 poin, tiap poin 6-14 kata, dan slide yang jawabannya singkat tetap berisi minimal 3 poin. Di catatan pembicara: 4-6 kalimat per slide, cukup untuk bicara sekitar satu menit.');
+ a.push('4. Pilih kata yang bagus, tetapi tetap bahasa anak SMP yang sopan, jelas, hangat, dan jujur. Hindari kata muluk seperti "senantiasa", "mengaktualisasikan", "signifikan", "optimal", dan bahasa iklan atau laporan kantor.');
+ a.push('5. Pakai kata "saya" secara konsisten.');
+ a.push('');
+ a.push('Batas pengembangan (wajib dipatuhi):');
+ a.push('- BOLEH: menjelaskan, memberi alasan yang wajar, menarik pelajaran, menyusun kalimat refleksi, menambahkan doa atau harapan yang umum.');
+ a.push('- TIDAK BOLEH: mengarang kejadian khusus, tanggal, angka, nilai, nama orang, nama lomba, atau prestasi yang tidak saya tulis.');
+ a.push('- Jawaban yang kosong tetap tidak dikarang. Tulis tempat kosong [ISI ...] supaya saya isi sendiri.');
+ a.push('');
+ a.push('Contoh 1. Jawaban saya: "aku rajin"');
+ a.push('- Poin slide: "Rajin dan berusaha konsisten setiap hari"');
+ a.push('- Catatan pembicara: "Kelebihan saya adalah rajin. Saya berusaha mengerjakan tugas dan kewajiban dengan sungguh-sungguh. Sifat ini ingin terus saya jaga, supaya target saya di semester depan juga bisa tercapai."');
+ a.push('Contoh 2. Jawaban saya: "gagal setoran juz 29"');
+ a.push('- Poin slide: "Pernah gagal setoran juz 29" dan "Pelajaran: hafalan perlu diulang setiap hari"');
+ a.push('- Catatan pembicara: "Semester ini saya pernah gagal setoran juz 29. Rasanya sedih, tetapi dari situ saya sadar bahwa hafalan tidak cukup diulang menjelang setoran saja. Ke depan saya ingin lebih rutin murajaah supaya hafalan saya lebih kuat."');
+ a.push('Perhatikan: kedua contoh tidak menambah kejadian, angka, atau nama baru.');
  a.push('');
  a.push('=== BAGIAN D. ISI TIAP SLIDE (dari jawaban saya) ===');
  a.push('SLIDE 1 — Sampul dan Identitas ('+DURASI[0]+')');
@@ -1746,7 +1761,7 @@ function buatPrompt(){
  a.push('- Label kecil: Rapor Semester '+ops('semester','[ISI SEMESTER DAN TAHUN AJARAN]'));
  a.push('- Nama: '+isi('nama','nama',1)+' · Kelas: '+isi('kelas','kelas',1));
  a.push('- Sediakan bingkai foto diri berseragam dan bingkai logo pondok.');
- if(v('prinsip').trim()) a.push('- Kalimat prinsip hidup saya: '+v('prinsip').trim());
+ if(v('prinsip').trim()) a.push('- Kalimat prinsip hidup saya: '+cer('prinsip'));
  a.push('');
  a.push('SLIDE 2 — Ringkasan Rapor ('+DURASI[1]+')');
  var adaNilai=(v('nFiqih')+v('nIT')+v('nIng')+v('nKar')+v('rata')).trim()!=='';
@@ -1757,15 +1772,15 @@ function buatPrompt(){
   a.push('- Rata-rata: '+ops('rata','[ISI RATA-RATA]'));
  }
  a.push('- Yang ingin saya perbaiki dan alasannya: '+isi('tingkat','pelajaran yang ingin diperbaiki',2));
- if(v('hadir').trim()) a.push('- Kehadiran dan tugas: '+v('hadir').trim());
- if(v('banding').trim()) a.push('- Dibanding semester lalu: '+v('banding').trim());
+ if(v('hadir').trim()) a.push('- Kehadiran dan tugas: '+cer('hadir'));
+ if(v('banding').trim()) a.push('- Dibanding semester lalu: '+cer('banding'));
  a.push('');
  a.push('SLIDE 3 — Perjalanan Bersama Al-Qur’an ('+DURASI[2]+')');
  a.push('- Hafalan awal semester: '+ops('hafAwal','[ISI HAFALAN AWAL]')+', sekarang: '+isi('hafAkhir','hafalan sekarang',3)+'. Tampilkan sebagai angka besar.');
  a.push('- Tantangan terberat menjaga hafalan: '+isi('hafTantang','tantangan hafalan',3));
- if(v('hafTarget').trim()) a.push('- Target dan realisasinya: '+v('hafTarget').trim());
- if(v('muraj').trim()) a.push('- Murajaah dan tasmi’: '+v('muraj').trim());
- if(v('tahsin').trim()) a.push('- Perkembangan tahsin: '+v('tahsin').trim());
+ if(v('hafTarget').trim()) a.push('- Target dan realisasinya: '+cer('hafTarget'));
+ if(v('muraj').trim()) a.push('- Murajaah dan tasmi’: '+cer('muraj'));
+ if(v('tahsin').trim()) a.push('- Perkembangan tahsin: '+cer('tahsin'));
  a.push('');
  a.push('SLIDE 4 — Perkembangan Ibadah ('+DURASI[3]+')');
  a.push('- Kebiasaan ibadah yang paling berkembang: '+isi('ibadahBaik','ibadah yang berkembang',4));
@@ -1773,19 +1788,19 @@ function buatPrompt(){
  a.push('');
  a.push('SLIDE 5 — Adab, Karakter, Kemandirian ('+DURASI[4]+')');
  a.push('- Perubahan sikap saya semester ini: '+isi('adabUbah','perubahan sikap',5));
- if(v('tanggungJawab').trim()) a.push('- Yang saya akui sebagai tanggung jawab saya sendiri: '+v('tanggungJawab').trim());
+ if(v('tanggungJawab').trim()) a.push('- Yang saya akui sebagai tanggung jawab saya sendiri: '+cer('tanggungJawab'));
  a.push('');
  a.push('SLIDE 6 — Keterampilan, Bahasa Inggris, IT, Proyek ('+DURASI[5]+')');
  a.push('- Proyek atau karya yang saya banggakan: '+isi('proyek','proyek atau karya',6));
- if(v('skillIT').trim()) a.push('- Keterampilan IT: '+v('skillIT').trim());
- if(v('skillIng').trim()) a.push('- Perkembangan bahasa Inggris: '+v('skillIng').trim());
- if(v('proyekSulit').trim()) a.push('- Kesulitan di proyek itu: '+v('proyekSulit').trim());
+ if(v('skillIT').trim()) a.push('- Keterampilan IT: '+cer('skillIT'));
+ if(v('skillIng').trim()) a.push('- Perkembangan bahasa Inggris: '+cer('skillIng'));
+ if(v('proyekSulit').trim()) a.push('- Kesulitan di proyek itu: '+cer('proyekSulit'));
  a.push('- Sediakan bingkai foto untuk karya saya.');
  a.push('');
  a.push('SLIDE 7 — Kekuatan dan Tantangan ('+DURASI[6]+')');
  a.push('- Kelebihan saya: '+isi('kekuatan','kelebihan diri',7));
  a.push('- Kegagalan yang paling mengajari saya: '+isi('gagal','kegagalan yang mengajari',7));
- if(v('pelajaran').trim()) a.push('- Pelajaran terpenting semester ini: '+v('pelajaran').trim());
+ if(v('pelajaran').trim()) a.push('- Pelajaran terpenting semester ini: '+cer('pelajaran'));
  a.push('');
  a.push('SLIDE 8 — Prestasi, Momen Bermakna, Rasa Syukur ('+DURASI[7]+')');
  a.push('- Pencapaian terbaik saya: '+isi('capaian','pencapaian terbaik',8));
@@ -1797,8 +1812,8 @@ function buatPrompt(){
  a.push('- "Kondisi saat ini" ambil dari jawaban saya di slide 2 sampai 6, jangan dikarang.');
  a.push('- Target Al-Qur’an: '+isi('tgtQuran','target Al-Qur’an',9));
  a.push('- Target akademik: '+isi('tgtAkademik','target akademik',9));
- if(v('tgtIbadah').trim()) a.push('- Target ibadah dan adab: '+v('tgtIbadah').trim());
- if(v('tgtSkill').trim()) a.push('- Target keterampilan atau proyek: '+v('tgtSkill').trim());
+ if(v('tgtIbadah').trim()) a.push('- Target ibadah dan adab: '+cer('tgtIbadah'));
+ if(v('tgtSkill').trim()) a.push('- Target keterampilan atau proyek: '+cer('tgtSkill'));
  a.push('');
  a.push('SLIDE 10 — Komitmen dan Dialog ('+DURASI[9]+')');
  a.push('- Komitmen utama saya: '+isi('komitmen','komitmen utama',10));
@@ -1809,14 +1824,14 @@ function buatPrompt(){
  a.push('1. Tetap 10 slide, urutan dan isi wajib sesuai Bagian D.');
  a.push('2. Jangan mengarang data, angka, nama, atau prestasi yang tidak saya sebutkan. Yang bertanda [ISI ...] biarkan apa adanya.');
  a.push('3. Jangan memasukkan foto atau logo dari internet. Sediakan bingkai kosong [TARUH FOTO DI SINI] di slide 1, 6, 8, dan 10, serta bingkai kecil [LOGO PONDOK] di sampul dan di pojok slide isi.');
- a.push('4. Boleh merapikan kalimat saya sesuai Bagian C, tetapi jangan mengubah maknanya dan jangan membuatnya terdengar seperti tulisan orang dewasa.');
+ a.push('4. Rapikan dan kembangkan kalimat saya sesuai Bagian C, tetapi jangan mengubah maknanya dan jangan membuatnya terdengar seperti tulisan orang dewasa.');
  a.push('5. Ukuran slide 16:9. Semua objek harus bisa saya geser dan edit sendiri, jangan digabung jadi satu gambar.');
  a.push('6. Tulis catatan pembicara (speaker notes) di tiap slide dengan susunan: PEMBUKA (1 kalimat), ISI (2-3 kalimat), PENGHUBUNG ke slide berikutnya (1 kalimat), dan DURASI. Pakai bahasa saya yang sudah dirapikan.');
  a.push('');
  a.push('=== KELUARAN ===');
  a.push('- Berikan file .pptx yang bisa saya unduh dan edit, dengan transisi dan animasi sudah terpasang.');
  a.push('- Kalau alatmu tidak bisa memasang transisi atau animasi langsung di file, jangan berhenti: tetap buat file-nya, lalu tuliskan langkah pemasangannya per slide (tab Transitions dan Animations di PowerPoint) supaya saya bisa memasangnya sendiri.');
- a.push('- Setelah selesai, tuliskan: daftar tempat kosong yang masih harus saya isi, daftar transisi dan animasi yang kamu pasang per slide, dan satu slide yang sebaiknya saya rapikan sendiri beserta alasannya.');
+ a.push('- Setelah selesai, tuliskan: (1) daftar tempat kosong yang masih harus saya isi, (2) daftar kalimat yang kamu kembangkan sendiri dari jawaban singkat saya, supaya saya cek apakah memang benar untuk saya, (3) daftar transisi dan animasi yang kamu pasang per slide, dan (4) satu slide yang sebaiknya saya rapikan sendiri beserta alasannya.');
  return a.join('\n');
 }
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
